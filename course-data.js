@@ -198,5 +198,77 @@ window.CHEM_COURSE = {
       recall:['Explain why diamond is hard but graphite is soft.','How many Si atoms bond to each O in SiO₂?','Explain metal conductivity and malleability separately.'],
       answerFrame:'[Structure] contains [bond/force or charge carrier]. Because [energy or movement], it has [property].'
     }
+  },
+  definitions: {
+    '1.1': [
+      {term:'Matter',definition:'Anything that has mass and occupies space.',meaning:'Matter has mass and takes up space.'},
+      {term:'Particle',definition:'An atom, molecule or ion that makes up a substance.',meaning:'A particle is one of the small units used in the particle model.'},
+      {term:'Solid',definition:'A state of matter with a fixed shape and a fixed volume.',meaning:'A solid keeps its own shape and volume.'},
+      {term:'Liquid',definition:'A state of matter with a fixed volume but no fixed shape.',meaning:'A liquid keeps its volume and takes the shape of its container.'},
+      {term:'Gas',definition:'A state of matter with no fixed shape or volume.',meaning:'A gas spreads to fill its container.'}
+    ],
+    '1.2': [
+      {term:'Kinetic energy',definition:'Energy that an object or particle has because of its motion.',meaning:'Moving particles have kinetic energy.'},
+      {term:'Melting',definition:'The change of state from solid to liquid.',meaning:'A solid becomes a liquid.'},
+      {term:'Freezing',definition:'The change of state from liquid to solid.',meaning:'A liquid becomes a solid.'},
+      {term:'Boiling',definition:'The change of state from liquid to gas throughout the liquid at its boiling point.',meaning:'Gas forms throughout the liquid at the boiling point.'},
+      {term:'Evaporation',definition:'The change of state from liquid to gas at the surface, below the boiling point.',meaning:'Some surface particles leave the liquid as gas below its boiling point.'},
+      {term:'Condensation',definition:'The change of state from gas to liquid.',meaning:'A gas becomes a liquid.'},
+      {term:'Sublimation',definition:'The change of state from solid directly to gas, without becoming liquid.',meaning:'A solid becomes a gas without passing through the liquid state.'}
+    ],
+    '1.3': [
+      {term:'Concentration',definition:'The amount of a substance per unit volume.',meaning:'It tells how much substance is present in a specified volume.'},
+      {term:'Diffusion',definition:'The net movement of particles from a region of higher concentration to a region of lower concentration, due to random motion.',meaning:'Particles move randomly; overall, they spread from high to low concentration.'},
+      {term:'Element',definition:'A substance containing only one type of atom.',meaning:'Every atom in an element has the same proton number.'},
+      {term:'Compound',definition:'A substance made from two or more different elements chemically bonded in fixed proportions.',meaning:'Its different elements are chemically joined in a fixed ratio.'},
+      {term:'Mixture',definition:'Two or more substances together without chemical bonds between them.',meaning:'The substances are physically mixed and can be separated by physical methods.'},
+      {term:'Solute',definition:'A substance that dissolves in a solvent.',meaning:'The solute is the substance dissolved.'},
+      {term:'Solvent',definition:'A liquid that dissolves a solute.',meaning:'The solvent is the liquid that does the dissolving.'},
+      {term:'Solution',definition:'A mixture formed when a solute dissolves in a solvent.',meaning:'A solution contains solute particles dispersed through a solvent.'},
+      {term:'Filtration',definition:'A method for separating an insoluble solid from a liquid using a filter.',meaning:'The liquid passes through the filter; the solid is retained.'},
+      {term:'Crystallisation',definition:'A method for obtaining a dissolved solid from its solution as crystals.',meaning:'Some solvent is removed, then the solution forms solid crystals as it cools or concentrates.'}
+    ],
+    '2.1': [
+      {term:'Atom',definition:'The smallest particle of an element that can take part in a chemical reaction.',meaning:'An atom is the smallest unit of an element used in chemical reactions.'},
+      {term:'Nucleus',definition:'The central part of an atom, containing protons and usually neutrons.',meaning:'The nucleus contains nearly all the atom’s mass.'},
+      {term:'Proton',definition:'A subatomic particle in the nucleus with relative charge +1 and relative mass 1.',meaning:'A proton is positively charged and has relative mass 1.'},
+      {term:'Neutron',definition:'A subatomic particle in the nucleus with relative charge 0 and relative mass 1.',meaning:'A neutron has no charge and has relative mass 1.'},
+      {term:'Electron',definition:'A subatomic particle around the nucleus with relative charge −1 and relative mass about 1/1840.',meaning:'An electron is negatively charged and much lighter than a proton or neutron.'},
+      {term:'Atomic number',definition:'The number of protons in the nucleus of an atom.',meaning:'Atomic number identifies the element.'},
+      {term:'Mass number',definition:'The total number of protons and neutrons in the nucleus of an atom.',meaning:'Mass number = protons + neutrons.'},
+      {term:'Ion',definition:'An atom or group of atoms with an overall electric charge, formed by gaining or losing electrons.',meaning:'An ion has unequal numbers of protons and electrons.'}
+    ],
+    '2.2': [
+      {term:'Isotopes',definition:'Atoms of the same element with the same number of protons but different numbers of neutrons.',meaning:'Isotopes have the same atomic number and different mass numbers.'},
+      {term:'Relative atomic mass',definition:'The weighted mean mass of an atom of an element compared with one-twelfth of the mass of a carbon-12 atom.',meaning:'It is the isotope-mass average, weighted by each isotope’s abundance, on the carbon-12 scale.'}
+    ],
+    '2.3': [
+      {term:'Electron shell',definition:'An energy level around the nucleus that contains electrons.',meaning:'Electrons occupy shells at different energy levels.'},
+      {term:'Electronic configuration',definition:'The arrangement of electrons in the shells of an atom or ion.',meaning:'It gives the number of electrons in each occupied shell.'},
+      {term:'Valence electrons',definition:'The electrons in the outermost occupied shell of an atom or ion.',meaning:'These are the outer-shell electrons.'}
+    ],
+    '3.1': [
+      {term:'Covalent bond',definition:'The strong electrostatic attraction between a shared pair of electrons and the nuclei of the bonded atoms.',meaning:'The shared electrons attract both nuclei and hold the atoms together.'},
+      {term:'Single bond',definition:'A covalent bond consisting of one shared pair of electrons.',meaning:'Two atoms share one pair of electrons.'},
+      {term:'Double bond',definition:'A covalent bond consisting of two shared pairs of electrons.',meaning:'Two atoms share two pairs of electrons.'},
+      {term:'Triple bond',definition:'A covalent bond consisting of three shared pairs of electrons.',meaning:'Two atoms share three pairs of electrons.'},
+      {term:'Simple molecular substance',definition:'A substance made of small molecules with strong covalent bonds within each molecule and weak forces between molecules.',meaning:'The molecules stay intact; the weaker forces between them are overcome during melting or boiling.'},
+      {term:'Intermolecular force',definition:'A force of attraction between separate molecules.',meaning:'It acts between molecules, not between atoms within one molecule.'}
+    ],
+    '3.2': [
+      {term:'Ionic bond',definition:'The strong electrostatic attraction between oppositely charged ions.',meaning:'Positive and negative ions attract each other.'},
+      {term:'Cation',definition:'A positively charged ion.',meaning:'It has fewer electrons than protons.'},
+      {term:'Anion',definition:'A negatively charged ion.',meaning:'It has more electrons than protons.'},
+      {term:'Giant ionic lattice',definition:'A regular three-dimensional arrangement of oppositely charged ions.',meaning:'Positive and negative ions repeat throughout the solid structure.'},
+      {term:'Electrostatic attraction',definition:'A force of attraction between opposite electric charges.',meaning:'Opposite charges attract.'}
+    ],
+    '3.3': [
+      {term:'Giant covalent structure',definition:'A continuous network of atoms joined by covalent bonds.',meaning:'Covalent bonds extend through the structure rather than forming separate small molecules.'},
+      {term:'Delocalised electrons',definition:'Electrons that are not confined to one atom or one covalent bond and can move through a structure.',meaning:'These electrons are free to move through part of the structure.'},
+      {term:'Metallic bonding',definition:'The strong electrostatic attraction between positive metal ions and delocalised electrons.',meaning:'Positive metal ions are attracted to the mobile electrons throughout the metal.'},
+      {term:'Diamond',definition:'A giant covalent structure in which each carbon atom is covalently bonded to four other carbon atoms.',meaning:'Each carbon forms four covalent bonds in a three-dimensional network.'},
+      {term:'Graphite',definition:'A giant covalent structure in which each carbon atom is covalently bonded to three others in layers, with delocalised electrons.',meaning:'Each carbon has three covalent bonds; one electron per carbon is delocalised.'},
+      {term:'Silicon dioxide',definition:'A giant covalent structure with the formula SiO₂.',meaning:'It is a continuous silicon–oxygen network, not separate SiO₂ molecules.'}
+    ]
   }
 };
