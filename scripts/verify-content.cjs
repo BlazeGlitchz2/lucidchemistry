@@ -6,7 +6,10 @@ vm.createContext(ctx);
 for (const file of ['course-data.js','practice-data.js']) vm.runInContext(fs.readFileSync(file,'utf8'),ctx,{filename:file});
 const c=ctx.window.CHEM_COURSE;
 const ids=['1.1','1.2','1.3','2.1','2.2','2.3','3.1','3.2','3.3'];
+assert.equal(c.studyPriorities.length,6);
+for(const priority of c.studyPriorities){assert(priority.title&&priority.focus&&priority.lessons.length);priority.lessons.forEach(id=>assert(ids.includes(id)));}
 for(const id of ids){
+ assert(c.worksheetPatterns[id]?.length>=2);c.worksheetPatterns[id].forEach(p=>assert(p.cue&&p.method&&p.pages));
  const l=c.lessons[id];assert(l);
  for(const field of ['goal','context','foundation','bridge','answerFrame'])assert(l[field]?.length>40,`${id} ${field}`);
  assert(l.concepts.length>=4);assert(l.examples.length===2);assert(l.traps.length>=2);assert(l.recall.length>=3);
