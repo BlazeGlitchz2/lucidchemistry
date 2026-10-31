@@ -70,8 +70,12 @@
   function worksheetPreview(ex) {
     return `<section class="lesson-worksheet-preview"><span class="worksheet-example-label">WORKSHEET · PDF PAGE ${ex.page}</span><h3>${esc(ex.question)}</h3><p>${esc(ex.short)}</p><button class="text-link" data-ac="worksheetexample" data-example="${esc(ex.id)}">See the full steps</button></section>`;
   }
+  function shellBreakdown(shells) {
+    if(!shells)return '';
+    return `<section class="shell-breakdown"><h4>Fill the electron shells</h4><p>Each number shows the electrons in one shell.</p><div class="shell-breakdown-grid">${shells.map(atom=>`<div class="shell-atom"><strong>${esc(atom.symbol)} · ${atom.electrons} electrons</strong><div class="shell-counts">${atom.arrangement.map((count,i)=>`<span class="shell-count ${i===atom.arrangement.length-1?'outer':''}"><small>Shell ${i+1}${i===atom.arrangement.length-1?' · outer':''}</small><b>${count}</b></span>`).join('')}</div>${atom.arrangement.length>1?`<p>${atom.electrons} − ${atom.arrangement.slice(0,-1).join(' − ')} = ${atom.arrangement.at(-1)} in the outer shell.</p>`:''}</div>`).join('')}</div></section>`;
+  }
   function worksheetExplanation(ex, indexed=false) {
-    return `<article class="lesson-worksheet-example" ${indexed?`id="worksheet-example-${esc(ex.id)}" tabindex="-1"`:''}><span class="worksheet-example-label">WORKSHEET · PDF PAGE ${ex.page}</span><h3>${esc(ex.question)}</h3><ol>${ex.steps.map(step=>`<li>${esc(step)}</li>`).join('')}</ol><p class="worksheet-example-answer"><b>Answer:</b> ${esc(ex.answer)}</p>${ex.check?`<p class="worksheet-example-check"><b>Check:</b> ${esc(ex.check)}</p>`:''}</article>`;
+    return `<article class="lesson-worksheet-example" ${indexed?`id="worksheet-example-${esc(ex.id)}" tabindex="-1"`:''}><span class="worksheet-example-label">WORKSHEET · PDF PAGE ${ex.page}</span><h3>${esc(ex.question)}</h3><div class="worksheet-starting"><b>How to find the starting facts</b><p>${esc(ex.starting)}</p>${ex.table?'<button class="text-link" data-view="periodic">Open periodic table</button>':''}</div>${shellBreakdown(ex.shells)}<h4>Steps</h4><ol>${ex.steps.map(step=>`<li>${esc(step)}</li>`).join('')}</ol><p class="worksheet-example-answer"><b>Answer:</b> ${esc(ex.answer)}</p>${ex.check?`<p class="worksheet-example-check"><b>Check:</b> ${esc(ex.check)}</p>`:''}</article>`;
   }
   function questionHTML(q) {
     const a=answer(q);

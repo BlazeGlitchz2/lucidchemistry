@@ -12,7 +12,7 @@ for(const id of ids){
  assert(l.concepts.length>=4);assert(l.examples.length===2);assert(l.traps.length>=2);assert(l.recall.length>=3);
  l.examples.forEach(e=>{assert(e.steps.length>=3);assert(e.answer);assert(e.why);});
  const examples=c.worksheetExamples[id];assert(examples&&examples.length>=3,`Missing worksheet explanations for ${id}`);
- examples.forEach(e=>{assert(e.id&&e.page>=1&&e.page<=72&&Number.isInteger(e.concept)&&e.concept>=0&&e.concept<l.concepts.length);assert(e.question&&e.short&&e.steps.length>=2&&e.answer);});
+ examples.forEach(e=>{assert(e.id&&e.page>=1&&e.page<=72&&Number.isInteger(e.concept)&&e.concept>=0&&e.concept<l.concepts.length);assert(e.question&&e.short&&e.starting&&e.steps.length>=2&&e.answer);});
  assert(c.written.filter(q=>q.lesson===id).length>=4);
  assert(c.extraMCQ.filter(q=>q[0]===id).length>=5);
 }
@@ -48,6 +48,14 @@ assert.equal(new Set(elements.map(e=>{const p=e.position||{row:e.period+1,col:e.
 for(const [symbol,number,type] of [['H',1,'nonmetal'],['C',6,'nonmetal'],['Na',11,'metal'],['Cl',17,'nonmetal'],['Br',35,'nonmetal'],['Pb',82,'metal']]){
  const e=elements.find(e=>e.symbol===symbol);assert(e&&e.number===number&&e.type===type,`Incorrect element ${symbol}`);
 }
+for(const ex of Object.values(c.worksheetExamples).flat())for(const atom of ex.shells||[]){
+ const element=elements.find(e=>e.symbol===atom.symbol);assert(element&&element.number===atom.electrons,`Wrong neutral electron count for ${atom.symbol}`);
+ assert.equal(atom.arrangement.reduce((sum,n)=>sum+n,0),atom.electrons,`Wrong shell total for ${atom.symbol}`);
+ atom.arrangement.forEach((count,i)=>{const capacity=[2,8,8,2][i]||0;assert(count>0&&count<=capacity,`Invalid shell for ${atom.symbol}`);if(i<atom.arrangement.length-1)assert.equal(count,capacity,`Unfilled inner shell for ${atom.symbol}`);});
+}
+const sodium=c.worksheetExamples['3.2'].find(e=>e.id==='sodium-ion-formation');
+assert.equal(sodium.shells.find(a=>a.symbol==='Na').arrangement.join(','),'2,8,1');
+assert.equal(sodium.shells.find(a=>a.symbol==='Cl').arrangement.join(','),'2,8,7');
 for(const id of ids){
  const figure=client.window.CHEM_VISUALS.render(id);assert(figure.includes('<svg')&&/<desc\b/.test(figure),`Missing visual for ${id}`);
  for(const match of figure.matchAll(/viewBox="([^"]+)"/g))assert.match(match[1],/^-?\d+(?:\.\d+)?\s+-?\d+(?:\.\d+)?\s+\d+(?:\.\d+)?\s+\d+(?:\.\d+)?$/);
