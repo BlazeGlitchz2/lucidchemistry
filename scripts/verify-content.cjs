@@ -22,9 +22,35 @@ for(const range of c.worksheet){const [lo,hi]=range.pages.split('–').map(Numbe
 assert.equal(end,72);
 assert(c.sources.every(s=>s.url.startsWith('https://www.cambridgeinternational.org/')));
 const html=fs.readFileSync('index.html','utf8');
-for(const f of ['academy.css','course-data.js','practice-data.js','academy.js']){assert(html.includes(f));assert(fs.existsSync(f));}
+for(const f of ['academy.css','course-data.js','practice-data.js','worksheet-guide.js','worksheet-guide.css','periodic-table.js','periodic-table.css','learning-visuals.js','learning-visuals.css','academy.js']){assert(html.includes(f));assert(fs.existsSync(f));}
+const client={window:{},document:{addEventListener(){},getElementById(){return null;}},localStorage:{getItem(){return null;},setItem(){}}};
+vm.createContext(client);
+for(const file of ['worksheet-guide.js','periodic-table.js','learning-visuals.js'])vm.runInContext(fs.readFileSync(file,'utf8'),client,{filename:file});
+const guide=client.window.CHEM_WORKSHEET;
+assert.equal(Object.keys(guide.pages).length,72);
+assert.equal(guide.pageNotes.length,73);
+for(let page=1;page<=72;page++){
+ const entry=guide.pages[page];assert(entry&&entry[0]&&entry[1].length,`Missing worksheet page ${page}`);
+ assert(guide.pageNotes[page],`Missing page note ${page}`);
+ for(const id of entry[1]){const m=guide.methods[id];assert(m&&m.definition&&m.steps.length>=3&&m.example,`Missing method ${id}`);assert(ids.includes(m.lesson));}
+ guide.openPage(page,false);assert(guide.render().includes(`PDF PAGE ${page} OF 72`),`Cannot render page ${page}`);
+}
+assert(guide.pages[6][1].includes('shared'));
+const elements=client.window.CHEM_PERIODIC.elements;
+assert.equal(elements.length,118);
+assert.equal((client.window.CHEM_PERIODIC.render().match(/data-pt-element=/g)||[]).length,118);
+assert.equal(new Set(elements.map(e=>e.symbol)).size,118);
+assert.equal(new Set(elements.map(e=>e.number)).size,118);
+assert.equal(new Set(elements.map(e=>{const p=e.position||{row:e.period+1,col:e.group+1};return `${p.row}:${p.col}`;})).size,118);
+for(const [symbol,number,type] of [['H',1,'nonmetal'],['C',6,'nonmetal'],['Na',11,'metal'],['Cl',17,'nonmetal'],['Br',35,'nonmetal'],['Pb',82,'metal']]){
+ const e=elements.find(e=>e.symbol===symbol);assert(e&&e.number===number&&e.type===type,`Incorrect element ${symbol}`);
+}
+for(const id of ids){
+ const figure=client.window.CHEM_VISUALS.render(id);assert(figure.includes('<svg')&&/<desc\b/.test(figure),`Missing visual for ${id}`);
+ for(const match of figure.matchAll(/viewBox="([^"]+)"/g))assert.match(match[1],/^-?\d+(?:\.\d+)?\s+-?\d+(?:\.\d+)?\s+\d+(?:\.\d+)?\s+\d+(?:\.\d+)?$/);
+}
 // Demonstrate the validation logic rejects a bad mapping and wrong answer index.
 assert.throws(()=>assert(ids.includes('9.9')));
 assert.throws(()=>assert(7>=0&&7<4));
-console.log(`Validated ${ids.length} lessons, ${c.written.length} written questions, ${c.extraMCQ.length} added MCQs and worksheet pages 1–${end}.`);
+console.log(`Validated ${ids.length} lessons, ${c.written.length} written questions, ${c.extraMCQ.length} added MCQs, ${Object.keys(guide.pages).length} worksheet guides and ${elements.length} elements.`);
 console.log('CONTENT_VALID');
