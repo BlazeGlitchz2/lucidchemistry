@@ -2,7 +2,7 @@
 
 A static Cambridge IGCSE Chemistry 0620 study space covering Coursebook Chapters 1–3.
 
-- Nine guided lessons with definitions, labelled diagrams, explanations, worked examples, practice and recall.
+- Nine guided lessons with definitions, labelled diagrams and step-by-step explanations of questions paraphrased from the supplied worksheet, plus practice and recall.
 - A page-by-page guide to the supplied 72-page worksheet, with methods and worked examples; the worksheet itself is not republished.
 - An interactive periodic table of 118 elements, with introductory shell arrangements and selected approximate atomic masses.
 - Original multiple-choice and written practice, hints, model answers and explicit self-assessment.

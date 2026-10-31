@@ -11,10 +11,13 @@ for(const id of ids){
  for(const field of ['goal','context','foundation','bridge','answerFrame'])assert(l[field]?.length>40,`${id} ${field}`);
  assert(l.concepts.length>=4);assert(l.examples.length===2);assert(l.traps.length>=2);assert(l.recall.length>=3);
  l.examples.forEach(e=>{assert(e.steps.length>=3);assert(e.answer);assert(e.why);});
+ const examples=c.worksheetExamples[id];assert(examples&&examples.length>=3,`Missing worksheet explanations for ${id}`);
+ examples.forEach(e=>{assert(e.id&&e.page>=1&&e.page<=72&&Number.isInteger(e.concept)&&e.concept>=0&&e.concept<l.concepts.length);assert(e.question&&e.short&&e.steps.length>=2&&e.answer);});
  assert(c.written.filter(q=>q.lesson===id).length>=4);
  assert(c.extraMCQ.filter(q=>q[0]===id).length>=5);
 }
 assert(new Set(c.written.map(q=>q.id)).size===c.written.length);
+assert.equal(new Set(Object.values(c.worksheetExamples).flat().map(e=>e.id)).size,Object.values(c.worksheetExamples).flat().length);
 for(const q of c.written){assert(ids.includes(q.lesson));assert(q.marks===q.points.length);assert(q.marks>0);assert(q.hints.length>=2);assert(q.model.length>40);}
 for(const [id,q,opts,correct,explain] of c.extraMCQ){assert(ids.includes(id));assert.equal(opts.length,4);assert(correct>=0&&correct<4);assert(explain.length>20);assert(q.length>20);}
 let end=0;
@@ -52,5 +55,5 @@ for(const id of ids){
 // Demonstrate the validation logic rejects a bad mapping and wrong answer index.
 assert.throws(()=>assert(ids.includes('9.9')));
 assert.throws(()=>assert(7>=0&&7<4));
-console.log(`Validated ${ids.length} lessons, ${c.written.length} written questions, ${c.extraMCQ.length} added MCQs, ${Object.keys(guide.pages).length} worksheet guides and ${elements.length} elements.`);
+console.log(`Validated ${ids.length} lessons, ${Object.values(c.worksheetExamples).flat().length} worksheet explanations, ${c.written.length} written questions, ${c.extraMCQ.length} added MCQs, ${Object.keys(guide.pages).length} worksheet guides and ${elements.length} elements.`);
 console.log('CONTENT_VALID');
